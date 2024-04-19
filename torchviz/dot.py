@@ -144,6 +144,10 @@ def make_dot(var, params=None, show_attrs=False, show_saved=False, max_attr_char
 
 
     def add_base_tensor(var, color='darkolivegreen1'):
+        if isinstance(var, dict):
+            for k, v in var.items():
+                add_base_tensor(v)
+            return
         if var in seen:
             return
         seen.add(var)
